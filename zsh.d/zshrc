@@ -1,0 +1,111 @@
+#          _
+#  _______| |__  _ __ ___
+# |_  / __| '_ \| '__/ __|
+#  / /\__ \ | | | | | (__
+# /___|___/_| |_|_|  \___|
+
+umask 002
+bindkey -e
+
+#================##
+## zsh func path ##
+##================#
+fpath=(~/.zsh.d/zsh-completions/src $fpath)
+
+#===============##
+## Shell Option ##
+##===============#
+autoload -Uz add-zsh-hook
+setopt auto_cd
+setopt auto_menu
+setopt auto_pushd
+setopt auto_param_keys
+setopt auto_remove_slash
+setopt complete_aliases
+setopt correct
+setopt extended_glob
+setopt ignore_eof
+setopt list_packed
+setopt list_types
+setopt long_list_jobs
+setopt magic_equal_subst
+setopt no_beep
+setopt no_flow_control
+setopt prompt_subst
+setopt pushd_ignore_dups
+setopt zle
+
+#                           ,--.       ,--. ,--.
+#  ,---.,---.,--,--,--.,---.|  |,---.,-'  '-`--',---.,--,--,
+# | .--| .-. |        | .-. |  | .-. '-.  .-,--| .-. |      \
+    # \ `--' '-' |  |  |  | '-' |  \   --. |  | |  ' '-' |  ||  |
+#  `---'`---'`--`--`--|  |-'`--'`----' `--' `--'`---'`--''--'
+#                     `--'
+autoload -U compinit && compinit -u
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:descriptions' format '%B[%d]%b'
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:warnings' format 'No matches: %d'
+zstyle ':completion:*:default' menu select=2
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
+
+#==========##
+## HISTORY ##
+##==========#
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^P" history-beginning-search-backward-end
+bindkey "^N" history-beginning-search-forward-end
+
+HISTFILE=~/.backup/zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+setopt extended_history #added timestamp
+setopt hist_ignore_dups #ignore duplication command history list
+setopt hist_ignore_all_dups #remove an older from history if duplication command.
+setopt share_history #share command history data
+
+#======##
+## zaw ##
+##======#
+# cdr
+autoload -Uz chpwd_recent_dirs cdr
+add-zsh-hook chpwd chpwd_recent_dirs
+zstyle ':chpwd:*' recent-dirs-max 5000
+zstyle ':chpwd:*' recent-dirs-default yes
+zstyle ':completion:*' recent-dirs-insert both
+
+# zaw-src-cdr
+if [ -f ~/.zsh.d/zaw/zaw.zsh ]; then
+    source ~/.zsh.d/zaw/zaw.zsh
+    zstyle ':filter-select:highlight' matched fg=yellow,standout
+    zstyle ':filter-select' max-lines 10 # use 10 lines for filter-select
+    zstyle ':filter-select' max-lines -10 # use $LINES - 10 for filter-select
+    zstyle ':filter-select' case-insensitive yes # enable case-insensitive search
+    bindkey '^@' zaw-cdr
+    bindkey '^R' zaw-history
+fi
+
+#=====================##
+## source auto-fu.zsh ##
+##=====================#
+if [ -f ~/.zsh.d/auto-fu/auto-fu.zsh ]; then
+    source ~/.zsh.d/auto-fu/auto-fu.zsh
+    function zle-line-init () {
+        auto-fu-init
+    }
+    zle -N zle-line-init
+    zstyle ':auto-fu:highlight' input bold
+    zstyle ':auto-fu:highlight' completion fg=black,bold
+    zstyle ':auto-fu:highlight' completion/one fg=white,bold
+    zstyle ':auto-fu:var' disable magic-space
+    zstyle ':completion:*' completer _oldlist _complete
+fi
+
+source ~/.zsh.d/aliases
+source ~/.zsh.d/zsh-theme
+
