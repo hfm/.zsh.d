@@ -17,7 +17,7 @@ if [ -f ~/.rbenv/bin/rbenv ]; then
 fi
 
 # nodejs
-if [ -d ~/.nodebrew ]; then
-  export PATH=$HOME/.nodebrew/current/bin:$PATH
-  export NODEBREW_ROOT=$HOME/.nodebrew
+if [ -f ~/.ndenv/bin/ndenv ]; then
+  export PATH=$HOME/.ndenv/bin:$HOME/.ndenv/shims:$PATH
+  eval "$(ndenv init - zsh)"
 fi
