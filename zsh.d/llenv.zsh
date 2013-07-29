@@ -1,6 +1,6 @@
 # perl
 if [ -f ~/.plenv/bin/plenv ]; then
-  export PATH=$HOME/.plenv/bin:$PATH
+  export PATH=$HOME/.plenv/bin:$HOME/.plenv/shims:$PATH
   eval "$(plenv init - zsh)"
 fi
 
