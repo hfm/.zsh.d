@@ -1,15 +1,6 @@
-#          _
-#  _______| |__  _ __ ___
-# |_  / __| '_ \| '__/ __|
-#  / /\__ \ | | | | | (__
-# /___|___/_| |_|_|  \___|
-
 umask 002
 bindkey -e
 
-#================##
-## zsh func path ##
-##================#
 fpath=(~/.zsh.d/zsh-completions/src $fpath)
 
 #===============##
@@ -35,23 +26,6 @@ setopt prompt_subst
 setopt pushd_ignore_dups
 setopt zle
 
-#                           ,--.       ,--. ,--.
-#  ,---.,---.,--,--,--.,---.|  |,---.,-'  '-`--',---.,--,--,
-# | .--| .-. |        | .-. |  | .-. '-.  .-,--| .-. |      \
-    # \ `--' '-' |  |  |  | '-' |  \   --. |  | |  ' '-' |  ||  |
-#  `---'`---'`--`--`--|  |-'`--'`----' `--' `--'`---'`--''--'
-#                     `--'
-autoload -U compinit && compinit -u
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' use-cache yes
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*:descriptions' format '%B[%d]%b'
-zstyle ':completion:*:messages' format '%d'
-zstyle ':completion:*:warnings' format 'No matches: %d'
-zstyle ':completion:*:default' menu select=2
-zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
-
 #==========##
 ## HISTORY ##
 ##==========#
@@ -69,49 +43,25 @@ setopt hist_ignore_dups #ignore duplication command history list
 setopt hist_ignore_all_dups #remove an older from history if duplication command.
 setopt share_history #share command history data
 
-#======##
-## zaw ##
-##======#
-# cdr
-autoload -Uz chpwd_recent_dirs cdr
-add-zsh-hook chpwd chpwd_recent_dirs
-zstyle ':chpwd:*' recent-dirs-max 5000
-zstyle ':chpwd:*' recent-dirs-default yes
-zstyle ':completion:*' recent-dirs-insert both
+#==============##
+## completions ##
+##==============#
+autoload -U compinit && compinit -u
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' list-separator '=>'
+zstyle ':completion:*:manuals' separate-sections true
+zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*\#'
+zstyle ':completion:*:descriptions' format '%B[%d]%b'
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:warnings' format 'No matches: %d'
+zstyle ':completion:*:default' menu select=2
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
+zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
-# zaw-src-cdr
-if [ -f ~/.zsh.d/zaw/zaw.zsh ]; then
-    source ~/.zsh.d/zaw/zaw.zsh
-    zstyle ':filter-select:highlight' matched fg=yellow,standout
-    zstyle ':filter-select' max-lines 10 # use 10 lines for filter-select
-    zstyle ':filter-select' max-lines -10 # use $LINES - 10 for filter-select
-    zstyle ':filter-select' case-insensitive yes # enable case-insensitive search
-    bindkey '^@' zaw-cdr
-    bindkey '^R' zaw-history
-fi
-
-#=====================##
-## source auto-fu.zsh ##
-##=====================#
-if [ -f ~/.zsh.d/auto-fu/auto-fu.zsh ]; then
-    source ~/.zsh.d/auto-fu/auto-fu.zsh
-    function zle-line-init () {
-        auto-fu-init
-    }
-    zle -N zle-line-init
-    zstyle ':auto-fu:highlight' input bold
-    zstyle ':auto-fu:highlight' completion fg=black,bold
-    zstyle ':auto-fu:highlight' completion/one fg=white,bold
-    zstyle ':auto-fu:var' disable magic-space
-    zstyle ':completion:*' completer _oldlist _complete
-fi
-
-source ~/.zsh.d/aliases
-source ~/.zsh.d/zsh-theme
-
-#========##
-## sheet ##
-##========#
+## sheet
 # http://blog.glidenote.com/blog/2012/04/16/sheet/
 compdef _sheets sheet
 function _sheets {

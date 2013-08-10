@@ -38,4 +38,3 @@ PROMPT+='%077F%2(v|(%1v @%2v) |)%f'
 PROMPT+=$'\n''%B$%b '
 PROMPT2='%_> '
 SPROMPT='Did you mean %B%001F%r%f%b? [n,y,a,e]: '
-
