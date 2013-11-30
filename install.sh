@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-[ -n "$HOME" ] && exit 1;
+[ ! -n "$HOME" ] && exit 1;
 
 if [ ! -e $HOME/.zlogin ]; then
 cat <<'EOF' > $HOME/.zlogin
