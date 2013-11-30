@@ -1,9 +1,4 @@
-# My Zsh
-
-My run-control files for Zsh.
-
 ```bash
-git clone https://github.com/Tacahilo/myzsh.git $HOME/.myzsh
-cd $HOME/.myzsh
-./install.sh
+git clone https://github.com/Tacahilo/.zsh.dgit $HOME/.zsh.d
+./$HOME/.zsh.d/install.sh
 ```
