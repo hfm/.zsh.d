@@ -1,8 +1,7 @@
-#!/bin/sh
+#!/bin/bash
+set -e
 
-if [ ! -e $HOME/.zsh.d ]; then
-  ln -sF $HOME/.dotfiles/myzsh/zsh.d  $HOME/.zsh.d
-fi
+[ -n "$HOME" ] && exit 1;
 
 if [ ! -e $HOME/.zlogin ]; then
 cat <<'EOF' > $HOME/.zlogin
