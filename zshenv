@@ -55,7 +55,7 @@ if [ $? -eq 0 ]; then
   local GODIR=`dirname $GOPATH`
   local GOPATH_BREW_RELATIVE=`readlink $GOPATH`
   local GOPATH_BREW=`dirname $GOPATH_BREW_RELATIVE`
-  export GOROOT=`cd $GODIR; cd $GOPATH_BREW/..; pwd`
+  export GOROOT=`cd $GODIR; cd $GOPATH_BREW/..; pwd`/libexec
 }
 setupGO
 
