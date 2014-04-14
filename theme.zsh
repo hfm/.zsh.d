@@ -31,10 +31,25 @@ zstyle ':vcs_info:git:*' unstagedstr "-"
 zstyle ':vcs_info:git:*' formats '%b[%c%u]'
 zstyle ':vcs_info:git:*' actionformats '%b|%a[%c%u]'
 
+perl_version=$(perl -v | awk '/perl 5/ {print $9}' | sed 's/[(|)]//g')
+ruby_version=$(ruby -v | awk '{print $2}')
+python_version=$(python -V 2>&1 | awk '{print $2}')
+
+color_reset='%f'
+color_cyan='%038F'
+color_orange='%214F'
+color_magenta='%164F'
+color_lightgreen='%077F'
+color_perl='%157F'
+color_turquoise='%027F'
+
 PROMPT='%n@%m '
-PROMPT+='%038F[%~]%f '
-PROMPT+='%214F$([ -n "$TMUX" ] && tmux display -p "[#I-#P] ")%f' # >> http://yonchu.hatenablog.com/entry/20120413/1334341553
-PROMPT+='%077F%2(v|(%1v @%2v) |)%f'
+PROMPT+="${color_cyan}[%~]${color_reset} "
+PROMPT+="${color_orange}$([ -n "$TMUX" ] && tmux display -p "[#I-#P] ")${color_reset}" # >> http://yonchu.hatenablog.com/entry/20120413/1334341553
+PROMPT+="${color_lightgreen}%2(v|(%1v @%2v) |)${color_reset}"
+PROMPT+="${color_perl}[perl ${perl_version}]${color_reset} "
+PROMPT+="${color_magenta}[ruby ${ruby_version}]${color_reset} "
+PROMPT+="${color_turquoise}[python ${python_version}]${color_reset} "
 PROMPT+=$'\n''%B$%b '
 PROMPT2='%_> '
 SPROMPT='Did you mean %B%001F%r%f%b? [n,y,a,e]: '
