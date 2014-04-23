@@ -20,7 +20,7 @@ zstyle ':filter-select' max-lines -10
 zstyle ':filter-select:highlight' matched fg=yellow,standout
 
 bindkey '^@' zaw-cdr
-bindkey '^R' zaw-history
+# bindkey '^R' zaw-history
 
 # zsh-completions
 package-install github zsh-users/zsh-completions
