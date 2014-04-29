@@ -26,6 +26,13 @@ if exists percol; then
 
     ### http://piyopiyoducky.net/blog/2013/08/17/cdr-with-percol/
     ### search a destination from cdr list
+
+    autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+    add-zsh-hook chpwd chpwd_recent_dirs
+    zstyle ':chpwd:*' recent-dirs-max 1000
+    zstyle ':chpwd:*' recent-dirs-default yes
+    zstyle ':completion:*' recent-dirs-insert both
+
     function percol-get-destination-from-cdr() {
         cdr -l | \
             sed -e 's/^[[:digit:]]*[[:blank:]]*//' | \
@@ -41,8 +48,8 @@ if exists percol; then
         else
             zle reset-prompt
         fi
+    }
 
     zle -N percol-cdr
     bindkey '^@' percol-cdr
-    }
 fi
