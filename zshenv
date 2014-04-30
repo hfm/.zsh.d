@@ -17,13 +17,12 @@
 ## thanks for http://www.clear-code.com/blog/2011/9/5.html
 # path=(# システム用
 #       /bin(N-/)
-
 #       )
-# general
-export EDITOR=vim
 
+# general
 export LANG=ja_JP.UTF-8
 export SHELL=/usr/local/bin/zsh
+export EDITOR=vim
 export TERM=xterm-256color
 
 # color
@@ -53,20 +52,20 @@ source ~/.zsh.d/llenv.zsh
 # http://python.matrix.jp/2013/05/09/go_start1.html
 type go &>/dev/null
 if [ $? -eq 0 ]; then
-  function setupGO() {
-  local GOPATH=`which go`
-  local GODIR=`dirname $GOPATH`
-  local GOPATH_BREW_RELATIVE=`readlink $GOPATH`
-  local GOPATH_BREW=`dirname $GOPATH_BREW_RELATIVE`
-  export GOROOT=`cd $GODIR; cd $GOPATH_BREW/..; pwd`/libexec
-}
-setupGO
+    function setupGO() {
+        local GOPATH=`which go`
+        local GODIR=`dirname $GOPATH`
+        local GOPATH_BREW_RELATIVE=`readlink $GOPATH`
+        local GOPATH_BREW=`dirname $GOPATH_BREW_RELATIVE`
+        export GOROOT=`cd $GODIR; cd $GOPATH_BREW/..; pwd`/libexec
+    }
+    setupGO
 
-export GOBIN=
-export GOARCH=amd64
-export GOOS=darwin
-export CGO_ENABLED=1
-export GOPATH=$HOME/.go
+    export GOBIN=
+    export GOARCH=amd64
+    export GOOS=darwin
+    export CGO_ENABLED=1
+    export GOPATH=$HOME/.go
 fi
 
 # Heroku Toolbelt
