@@ -35,15 +35,10 @@ export ZLS_COLORS=$LS_COLORS
 export GNUTERM=x11
 
 # Homebrew
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share:$PATH
-
-# TeXLive
-export PATH=/usr/local/texlive/2012/bin/x86_64-darwin:$PATH
+[ -e /usr/local/bin/brew ] && export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share:$PATH
 
 # Cabal(Haskell)
-if [ -d ~/.cabal ]; then
-  export PATH=$HOME/.cabal/bin:$PATH
-fi
+[ -d ~/.cabal ] && export PATH=$HOME/.cabal/bin:$PATH
 
 source ~/.zsh.d/llenv.zsh
 
@@ -69,9 +64,7 @@ if [ $? -eq 0 ]; then
 fi
 
 # Heroku Toolbelt
-if [ -d ~/.heroku ]; then
-  export PATH="/usr/local/heroku/bin:$PATH"
-fi
+[ -d ~/.heroku ] && export PATH="/usr/local/heroku/bin:$PATH"
 
 # JAVA
 export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
