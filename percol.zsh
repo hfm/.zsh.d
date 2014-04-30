@@ -10,7 +10,6 @@ if exists percol; then
     zle -N percol_select_history
     bindkey '^R' percol_select_history
 
-
     function ppgrep() {
         if [[ $1 == "" ]]; then
             PERCOL=percol
@@ -26,7 +25,6 @@ if exists percol; then
 
     ### http://piyopiyoducky.net/blog/2013/08/17/cdr-with-percol/
     ### search a destination from cdr list
-
     autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
     add-zsh-hook chpwd chpwd_recent_dirs
     zstyle ':chpwd:*' recent-dirs-max 1000
@@ -49,7 +47,6 @@ if exists percol; then
             zle reset-prompt
         fi
     }
-
     zle -N percol-cdr
     bindkey '^@' percol-cdr
 fi
