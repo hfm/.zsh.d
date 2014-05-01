@@ -35,16 +35,32 @@ export ZLS_COLORS=$LS_COLORS
 export GNUTERM=x11
 
 # Homebrew
-[ -e /usr/local/bin/brew ] && export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share:$PATH
+[ -f /usr/local/bin/brew ] && export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share:$PATH
 
 # Cabal(Haskell)
-[ -d ~/.cabal ] && export PATH=$HOME/.cabal/bin:$PATH
+[ -f ~/.cabal/bin ] && export PATH=$HOME/.cabal/bin:$PATH
 
-source ~/.zsh.d/llenv.zsh
+# perl
+if [ -f ~/.plenv/bin/plenv ]; then
+  export PATH=$HOME/.plenv/bin:$HOME/.plenv/shims:$PATH
+  eval "$(plenv init - zsh)"
+fi
 
-# go lang
-# https://gist.github.com/ivanzoid/3477252
-# http://python.matrix.jp/2013/05/09/go_start1.html
+# python
+if [ -f ~/.pyenv/bin/pyenv ]; then
+  export PATH=$HOME/.pyenv/bin:$HOME/.pyenv/shims:$PATH
+  eval "$(pyenv init - zsh)"
+fi
+
+# ruby
+if [ -f ~/.rbenv/bin/rbenv ]; then
+  export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH
+  eval "$(rbenv init - zsh)"
+fi
+
+# golang
+#   https://gist.github.com/ivanzoid/3477252
+#   http://python.matrix.jp/2013/05/09/go_start1.html
 type go &>/dev/null
 if [ $? -eq 0 ]; then
     function setupGO() {
