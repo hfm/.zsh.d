@@ -17,11 +17,15 @@ EOF
 cat <<'EOF' > $HOME/.zshrc
 source ~/.zsh.d/zshrc
 source ~/.zsh.d/function.zsh
-source ~/.zsh.d/percol.zsh
+if exists percol; then
+    source ~/.zsh.d/percol.zsh
+fi
 source ~/.zsh.d/aliases.zsh
 source ~/.zsh.d/theme.zsh
 source ~/.zsh.d/config/packages.zsh
-eval "$(direnv hook zsh)"
+if exists direnv; then
+    eval "$(direnv hook zsh)"
+fi
 EOF
 
 ls -hal ~/.zsh{.d,env,rc} ~/.zlogin
