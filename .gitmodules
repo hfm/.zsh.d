@@ -5,3 +5,6 @@
 [submodule "packages/zsh-completions"]
 	path = packages/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions.git
+[submodule "packages/my-zsh-completions"]
+	path = packages/my-zsh-completions
+	url = https://github.com/tacahilo/my-zsh-completions.git

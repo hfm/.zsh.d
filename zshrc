@@ -23,7 +23,7 @@ setopt zle
 
 
 # completions
-fpath=(~/.zsh.d/packages/zsh-completions/src $fpath)
+fpath=(~/.zsh.d/packages/my-completions/src ~/.zsh.d/packages/zsh-completions/src $fpath)
 
 autoload -U compinit && compinit -u
 zstyle ':completion:*' group-name ''
