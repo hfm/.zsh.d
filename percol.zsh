@@ -40,12 +40,9 @@ if exists percol; then
     ### search a destination from cdr list and cd the destination
     function percol-cdr() {
         local destination="$(percol-get-destination-from-cdr)"
-        if [ -n "$destination" ]; then
-            BUFFER="cd $destination"
-            zle accept-line
-        else
-            zle reset-prompt
-        fi
+        BUFFER="cd $destination"
+        CURSOR=$#BUFFER
+        zle -R -c
     }
     zle -N percol-cdr
     bindkey '^@' percol-cdr
