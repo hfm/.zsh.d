@@ -1,5 +1,5 @@
 _percol_clean_prompt() {
-    if [[ -n $TMUX ]]; then
+    if [ -n "$TMUX" ]; then
         zle reset-prompt
     else
         zle -R -c
@@ -11,7 +11,7 @@ percol_select_history() {
     exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
     output=$(fc -l -n 1 | eval $tac | percol --match-method migemo --query "$LBUFFER")
 
-    if [ "$output" -n ]; then
+    if [ -n "$output" ]; then
         BUFFER=$output
         CURSOR=$#BUFFER
     fi
