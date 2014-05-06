@@ -1,0 +1,7 @@
+[submodule "packages/auto-fu.zsh"]
+	path = packages/auto-fu.zsh
+	url = https://github.com/hchbaw/auto-fu.zsh.git
+	branch = pu
+[submodule "packages/zsh-completions"]
+	path = packages/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git
