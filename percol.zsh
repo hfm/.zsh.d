@@ -9,7 +9,7 @@ _percol_clean_prompt() {
 percol_select_history() {
     local tac
     exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
-    output=$(fc -l -n 1 | eval $tac | percol --match-method migemo --query "$LBUFFER")
+    output=$(fc -l -n 1 | eval $tac | percol --query "$LBUFFER")
 
     if [ -n "$output" ]; then
         BUFFER=$output
