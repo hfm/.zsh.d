@@ -29,15 +29,9 @@ zstyle ':chpwd:*' recent-dirs-max 500
 zstyle ':chpwd:*' recent-dirs-default yes
 zstyle ':completion:*' recent-dirs-insert both
 
-percol-get-destination-from-cdr() {
-    cdr -l | \
-        sed -e 's/^[[:digit:]]*[[:blank:]]*//' | \
-        percol --match-method migemo --query "$LBUFFER"
-}
-
 ### search a destination from cdr list and cd the destination
 percol-cdr() {
-    local destination="$(percol-get-destination-from-cdr)"
+    local destination=$(cdr -l | awk '{print $2}' | percol --query "$LBUFFER")
     BUFFER="cd $destination"
     CURSOR=$#BUFFER
     _percol_clean_prompt
