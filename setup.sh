@@ -22,7 +22,6 @@ if exists percol; then
 fi
 source ~/.zsh.d/aliases.zsh
 source ~/.zsh.d/theme.zsh
-source ~/.zsh.d/config/packages.zsh
 if exists direnv; then
     eval "$(direnv hook zsh)"
 fi
