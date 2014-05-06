@@ -1,6 +1,6 @@
 ## install
 
-```bash
-git clone https://github.com/Tacahilo/.zsh.dgit $HOME/.zsh.d
-./$HOME/.zsh.d/install.sh
+```sh
+git clone --recursive https://github.com/tacahilo/.zsh.d.git ~/.zsh.d
+~/.zsh.d/misc/setup
 ```
