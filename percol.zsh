@@ -50,23 +50,15 @@ percol_select_history() {
 zle -N percol_select_history
 bindkey '^R' percol_select_history
 
-### http://piyopiyoducky.net/blog/2013/08/17/cdr-with-percol/
-### search a destination from cdr list
-autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-add-zsh-hook chpwd chpwd_recent_dirs
-zstyle ':chpwd:*' recent-dirs-max 500
-zstyle ':chpwd:*' recent-dirs-default yes
-zstyle ':completion:*' recent-dirs-insert both
-
-### search a destination from cdr list and cd the destination
-percol-cdr() {
+# search a destination from cdr list and cd the destination
+percol_cdr() {
     local destination=$(cdr -l | awk '{print $2}' | percol --query "$LBUFFER")
     BUFFER="cd $destination"
     CURSOR=$#BUFFER
     _percol_clean_prompt
 }
-zle -N percol-cdr
-bindkey '^@' percol-cdr
+zle -N percol_cdr
+bindkey '^@' percol_cdr
 
 # =================================================================
 #                                                      _           
