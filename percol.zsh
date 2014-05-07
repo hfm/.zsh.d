@@ -35,6 +35,47 @@ _percol_clean_prompt() {
 # "`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-' 
 # =========================================================
 
+# original: @lamanotrama
+# find dirs on repository
+_find_proj_root () {
+    while [ $(pwd) != "$HOME" ]; do
+        if [ -d .git ]; then
+            pwd
+            break
+        fi
+        cd ../
+    done
+}
+
+percol_proj_cd () {
+    local proj_root=$(_find_proj_root)
+    local gitignore="${proj_root}/.gitignore"
+
+    if [ -z "$proj_root" ]; then
+        echo -e "\nproject root path was not found.\n" 1>&2
+        _percol_clean_prompt
+        return
+    fi
+
+    ignore_opt_str='-name .git'
+    if [ -f "$gitignore" ]; then
+        ignore_opt_str+=$(egrep -v -e '^#' -e '^ *$' "$gitignore" | perl -npe "s/^/ -o -name '/; s/\n/'/")
+    fi
+
+    local selected_dir=$(
+        cd "$proj_root" &&
+        echo "find . \( $ignore_opt_str \) -prune -o -maxdepth 10 -type d -print" |
+          sh | percol --query "$LBUFFER"
+    )
+
+    if [ -n "$selected_dir" ]; then
+        BUFFER="cd ${proj_root}/${selected_dir#./}"
+    fi
+    _percol_clean_prompt
+}
+zle -N percol_proj_cd
+bindkey '^X' percol_proj_cd
+
 percol_select_history() {
     local tac
     exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
