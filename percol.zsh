@@ -129,3 +129,9 @@ ppkill() {
 
     ppgrep $QUERY | xargs echo $*
 }
+
+ggibo() {
+  if exists gibo; then
+      gibo -l | percol | xargs gibo
+  fi
+}
