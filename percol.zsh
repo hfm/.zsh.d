@@ -135,3 +135,7 @@ ggibo() {
       gibo -l | percol | xargs gibo
   fi
 }
+
+prco() {
+    $HOME/.dotfiles/bin/prfetch | percol | cut -f2 | xargs git checkout
+}
