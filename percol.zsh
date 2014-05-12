@@ -129,3 +129,13 @@ ppkill() {
 
     ppgrep $QUERY | xargs kill $*
 }
+
+ggibo() {
+  if exists gibo; then
+      gibo -l | percol | xargs gibo
+  fi
+}
+
+prco() {
+    $HOME/.dotfiles/bin/prfetch | percol | cut -f2 | xargs git checkout
+}
