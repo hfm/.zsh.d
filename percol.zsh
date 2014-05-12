@@ -127,5 +127,5 @@ ppkill() {
         [[ $# > 0 ]] && shift
     fi
 
-    ppgrep $QUERY | xargs echo $*
+    ppgrep $QUERY | xargs kill $*
 }
