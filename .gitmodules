@@ -8,3 +8,6 @@
 [submodule "packages/my-zsh-completions"]
 	path = packages/my-zsh-completions
 	url = https://github.com/tacahilo/my-zsh-completions.git
+[submodule "packages/zsh-bd"]
+	path = packages/zsh-bd
+	url = https://github.com/Tarrasch/zsh-bd.git
