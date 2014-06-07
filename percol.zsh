@@ -101,6 +101,16 @@ percol_cdr() {
 zle -N percol_cdr
 bindkey '^@' percol_cdr
 
+percol_src() {
+    local selected_dir=$(ghq list --full-path | percol --query "$LBUFFER")
+    if [ -n "$selected_dir" ]; then
+        BUFFER="cd ${selected_dir}"
+    fi
+    _percol_clean_prompt
+}
+zle -N percol_src
+bindkey '^S' percol_src
+
 # =================================================================
 #                                                      _           
 #    __      ___    _ __    _ __    __ _    _ _     __| |    ___   
