@@ -78,6 +78,7 @@ if [ $? -eq 0 ]; then
     export GOOS=darwin
     export CGO_ENABLED=1
     export GOPATH=$HOME/.go
+    export PATH=$PATH:$GOPATH/bin
 fi
 
 # Heroku Toolbelt
