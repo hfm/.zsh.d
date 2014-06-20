@@ -96,7 +96,7 @@ percol_cdr() {
     local destination=$(cdr -l | awk '{print $2}' | percol --query "$LBUFFER")
     BUFFER="cd $destination"
     CURSOR=$#BUFFER
-    _percol_clean_prompt
+    zle accept-line
 }
 zle -N percol_cdr
 bindkey '^@' percol_cdr
