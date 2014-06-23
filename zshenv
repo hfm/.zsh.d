@@ -59,6 +59,9 @@ if [ -f ~/.rbenv/bin/rbenv ]; then
   eval "$(rbenv init - zsh)"
 fi
 
+# bundler
+export BUNDLER_EDITOR="vim +CtrlP"
+
 # golang
 #   https://gist.github.com/ivanzoid/3477252
 #   http://python.matrix.jp/2013/05/09/go_start1.html
