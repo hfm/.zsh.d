@@ -105,8 +105,8 @@ percol_src() {
     local selected_dir=$(ghq list --full-path | percol --query "$LBUFFER")
     if [ -n "$selected_dir" ]; then
         BUFFER="cd ${selected_dir}"
+        zle accept-line
     fi
-    _percol_clean_prompt
 }
 zle -N percol_src
 bindkey '^S' percol_src
