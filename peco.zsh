@@ -1,13 +1,11 @@
-#  ________  _______   ________  ________  ________  ___          
-# |\   __  \|\  ___ \ |\   __  \|\   ____\|\   __  \|\  \         
-# \ \  \|\  \ \   __/|\ \  \|\  \ \  \___|\ \  \|\  \ \  \        
-#  \ \   ____\ \  \_|/_\ \   _  _\ \  \    \ \  \\\  \ \  \       
-#   \ \  \___|\ \  \_|\ \ \  \\  \\ \  \____\ \  \\\  \ \  \____  
-#    \ \__\    \ \_______\ \__\\ _\\ \_______\ \_______\ \_______\
-#     \|__|     \|_______|\|__|\|__|\|_______|\|_______|\|_______|
+#  _ __   ___  ___ ___  
+# | '_ \ / _ \/ __/ _ \ 
+# | |_) |  __/ (_| (_) |
+# | .__/ \___|\___\___/ 
+# |_|                   
 #
-# For percol functions
-# need: `pip install percol --allow-external percol --allow-unverified percol`
+# For peco functions
+# need: brew tap peco/peco; brew install peco
 
 # ================================================
 #                                                 
@@ -18,7 +16,7 @@
 #"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-' 
 # ================================================
 
-_percol_clean_prompt() {
+_peco_clean_prompt() {
     if [ -n "$TMUX" ]; then
         zle reset-prompt
     else
@@ -47,13 +45,13 @@ _find_proj_root () {
     done
 }
 
-percol_proj_cd () {
+peco_proj_cd () {
     local proj_root=$(_find_proj_root)
     local gitignore="${proj_root}/.gitignore"
 
     if [ -z "$proj_root" ]; then
         echo -e "\nproject root path was not found.\n" 1>&2
-        _percol_clean_prompt
+        _peco_clean_prompt
         return
     fi
 
@@ -65,51 +63,51 @@ percol_proj_cd () {
     local selected_dir=$(
         cd "$proj_root" &&
         echo "find . \( $ignore_opt_str \) -prune -o -maxdepth 10 -type d -print" |
-          sh | percol --query "$LBUFFER"
+          sh | peco --query "$LBUFFER"
     )
 
     if [ -n "$selected_dir" ]; then
         BUFFER="cd ${proj_root}/${selected_dir#./}"
     fi
-    _percol_clean_prompt
+    _peco_clean_prompt
 }
-zle -N percol_proj_cd
-bindkey '^X' percol_proj_cd
+zle -N peco_proj_cd
+bindkey '^X' peco_proj_cd
 
-percol_select_history() {
+peco_select_history() {
     local tac
     exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
-    output=$(fc -l -n 1 | eval $tac | percol --query "$LBUFFER")
+    output=$(fc -l -n 1 | eval $tac | peco --query "$LBUFFER")
 
     if [ -n "$output" ]; then
         BUFFER=$output
         CURSOR=$#BUFFER
     fi
 
-    _percol_clean_prompt
+    _peco_clean_prompt
 }
-zle -N percol_select_history
-bindkey '^R' percol_select_history
+zle -N peco_select_history
+bindkey '^R' peco_select_history
 
 # search a destination from cdr list and cd the destination
-percol_cdr() {
-    local destination=$(cdr -l | awk '{print $2}' | percol --query "$LBUFFER")
+peco_cdr() {
+    local destination=$(cdr -l | awk '{print $2}' | peco --query "$LBUFFER")
     BUFFER="cd $destination"
     CURSOR=$#BUFFER
     zle accept-line
 }
-zle -N percol_cdr
-bindkey '^@' percol_cdr
+zle -N peco_cdr
+bindkey '^@' peco_cdr
 
-percol_src() {
-    local selected_dir=$(ghq list --full-path | percol --query "$LBUFFER")
+peco_src() {
+    local selected_dir=$(ghq list --full-path | peco --query "$LBUFFER")
     if [ -n "$selected_dir" ]; then
         BUFFER="cd ${selected_dir}"
         zle accept-line
     fi
 }
-zle -N percol_src
-bindkey '^S' percol_src
+zle -N peco_src
+bindkey '^S' peco_src
 
 # =================================================================
 #                                                      _           
@@ -122,11 +120,11 @@ bindkey '^S' percol_src
 
 ppgrep() {
     if [ -z $1 ]; then
-        PERCOL=percol
+        local varpeco=peco
     else
-        PERCOL="percol --query $1"
+        local varpeco="peco --query $1"
     fi
-    ps aux | eval $PERCOL | awk '{ print $2 }'
+    ps aux | eval $varpeco | awk '{ print $2 }'
 }
 
 ppkill() {
@@ -142,10 +140,10 @@ ppkill() {
 
 ggibo() {
   if exists gibo; then
-      gibo -l | percol | xargs gibo
+      gibo -l | peco | xargs gibo
   fi
 }
 
 prco() {
-    $HOME/.dotfiles/bin/prfetch | percol | cut -f2 | xargs git checkout
+    $HOME/.dotfiles/bin/prfetch | peco | cut -f2 | xargs git checkout
 }

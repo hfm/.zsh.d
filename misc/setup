@@ -17,8 +17,8 @@ EOF
 cat <<'EOF' > $HOME/.zshrc
 source ~/.zsh.d/zshrc
 source ~/.zsh.d/functions.zsh
-if exists percol; then
-    source ~/.zsh.d/percol.zsh
+if exists peco; then
+    source ~/.zsh.d/peco.zsh
 fi
 source ~/.zsh.d/aliases.zsh
 source ~/.zsh.d/theme.zsh
