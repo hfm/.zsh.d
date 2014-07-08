@@ -147,3 +147,8 @@ ggibo() {
 prco() {
     $HOME/.dotfiles/bin/prfetch | peco | cut -f2 | xargs git checkout
 }
+
+# ag to vim
+am () {
+    vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+}
