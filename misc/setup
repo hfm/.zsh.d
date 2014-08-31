@@ -3,12 +3,8 @@ set -e
 
 [ ! -n "$HOME" ] && exit 1;
 
-if [ ! -e $HOME/.zlogin ]; then
-cat <<'EOF' > $HOME/.zlogin
-echo "Hello, Z World !"
-
-EOF
-fi
+ln -sf ~/.zsh.d/zlogin ~/.zlogin
+ln -sf ~/.zsh.d/zlogout ~/.zlogout
 
 cat <<'EOF' > $HOME/.zshenv
 source ~/.zsh.d/zshenv
@@ -28,7 +24,7 @@ if exists direnv; then
 fi
 EOF
 
-ls -hal ~/.zsh{.d,env,rc} ~/.zlogin
+ls -hal ~/.zsh{.d,env,rc} ~/.zlog{in,out}
 
 cat <<'EOF'
 
