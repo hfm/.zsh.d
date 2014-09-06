@@ -18,3 +18,12 @@ zle -N zle-keymap-select auto-fu-zle-keymap-select
 #
 # ===============================
 source $HOME/.zsh.d/packages/zsh-bd/bd.zsh
+
+# ===============================
+#  ____ ____ ____ ____ ____ ____ 
+# ||g |||o |||l |||a |||n |||g ||
+# ||__|||__|||__|||__|||__|||__||
+# |/__\|/__\|/__\|/__\|/__\|/__\|
+# 
+# ===============================
+source $GOROOT/../share/zsh/site-functions/go
