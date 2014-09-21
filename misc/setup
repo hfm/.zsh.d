@@ -15,8 +15,8 @@ source ~/.zsh.d/20theme.zsh
 if exists peco; then
     source ~/.zsh.d/peco.zsh
 fi
-source ~/.zsh.d/aliases.zsh
 source ~/.zsh.d/packages.zsh
+source ~/.zsh.d/90aliases.zsh
 if exists direnv; then
     eval "$(direnv hook zsh)"
 fi
