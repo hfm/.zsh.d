@@ -17,9 +17,6 @@ if exists peco; then
     source ~/.zsh.d/peco.zsh
 fi
 source ~/.zsh.d/90aliases.zsh
-if exists direnv; then
-    eval "$(direnv hook zsh)"
-fi
 EOF
 
 ls -hal ~/.zsh{.d,env,rc} ~/.zlog{in,out}

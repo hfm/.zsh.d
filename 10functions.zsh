@@ -1,6 +1,7 @@
 # exists
 exists() { which $1 &>/dev/null }
 
+# when using hhkb, buildin-keyboard is set to disable
 disable_builtin_keyboard() {
     sudo kextunload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/
 }
@@ -8,3 +9,7 @@ disable_builtin_keyboard() {
 enable_builtin_keyboard() {
     sudo kextload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/
 }
+
+if exists direnv; then
+    eval "$(direnv hook zsh)"
+fi
