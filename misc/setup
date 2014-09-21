@@ -11,7 +11,7 @@ source ~/.zsh.d/zshenv
 EOF
 
 cat <<'EOF' > $HOME/.zshrc
-source ~/.zsh.d/zshrc
+source ~/.zsh.d/01zshrc
 source ~/.zsh.d/functions.zsh
 if exists peco; then
     source ~/.zsh.d/peco.zsh
