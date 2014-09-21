@@ -6,9 +6,7 @@ set -e
 ln -sf ~/.zsh.d/zlogin ~/.zlogin
 ln -sf ~/.zsh.d/zlogout ~/.zlogout
 
-cat <<'EOF' > $HOME/.zshenv
-source ~/.zsh.d/zshenv
-EOF
+echo 'source ~/.zsh.d/zshenv' >> $HOME/.zshenv
 
 cat <<'EOF' > $HOME/.zshrc
 source ~/.zsh.d/01zshrc
