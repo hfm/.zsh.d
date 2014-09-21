@@ -12,7 +12,7 @@ EOF
 
 cat <<'EOF' > $HOME/.zshrc
 source ~/.zsh.d/01zshrc
-source ~/.zsh.d/functions.zsh
+source ~/.zsh.d/10functions.zsh
 if exists peco; then
     source ~/.zsh.d/peco.zsh
 fi
