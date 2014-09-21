@@ -8,7 +8,7 @@ ln -sf ~/.zsh.d/zlogout ~/.zlogout
 
 echo 'source ~/.zsh.d/zshenv' >> $HOME/.zshenv
 
-cat <<'EOF' > $HOME/.zshrc
+cat <<'EOF' >> $HOME/.zshrc
 source ~/.zsh.d/01zshrc
 source ~/.zsh.d/10functions.zsh
 source ~/.zsh.d/20theme.zsh
