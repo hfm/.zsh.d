@@ -13,9 +13,6 @@ source ~/.zsh.d/01zshrc
 source ~/.zsh.d/10functions.zsh
 source ~/.zsh.d/20theme.zsh
 source ~/.zsh.d/30packages.zsh
-if exists peco; then
-    source ~/.zsh.d/peco.zsh
-fi
 source ~/.zsh.d/90aliases.zsh
 EOF
 

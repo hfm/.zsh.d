@@ -13,3 +13,7 @@ enable_builtin_keyboard() {
 if exists direnv; then
     eval "$(direnv hook zsh)"
 fi
+
+if exists peco; then
+    source ~/.zsh.d/peco.zsh
+fi
