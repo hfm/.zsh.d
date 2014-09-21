@@ -6,23 +6,21 @@
 
 autoload -U colors && colors
 autoload -Uz vcs_info
-function _for_prompt() {
-    # set git branch-name
-    # >> http://www.slideshare.net/tetutaro/zsh-20923001
+_for_prompt() {
+    # git branch-name:
+    # http://www.slideshare.net/tetutaro/zsh-20923001
     psvar=()
     LANG=en_US.UTF-8 vcs_info
     psvar[1]=$vcs_info_msg_0_
 
-    # set git stash-num
-    # >> http://qiita.com/items/13f85c11d3d0aa35d7ef
+    # git stash-num:
+    # http://qiita.com/items/13f85c11d3d0aa35d7ef
     git stash list &>/dev/null
-    if [ $? -eq 0 ]; then
-        psvar[2]=$(git stash list | wc -l | tr -d " ")
-    fi
+    [ $? -eq 0 ] && psvar[2]=$(git stash list | wc -l | tr -d " ")
 }
 add-zsh-hook precmd _for_prompt
 
-# >> http://kitak.hatenablog.jp/entry/2013/05/25/103059
+# http://kitak.hatenablog.jp/entry/2013/05/25/103059
 zstyle ':vcs_info:*' enable git svn cvs
 zstyle ':vcs_info:*' disable bzr cdv darcs mtn svk tla
 zstyle ':vcs_info:git:*' check-for-changes true
