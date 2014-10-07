@@ -51,3 +51,18 @@ PROMPT+="${color_turquoise}[python ${python_version}]${color_reset} "
 PROMPT+=$'\n''%B$%b '
 PROMPT2='%_> '
 SPROMPT='Did you mean %B%001F%r%f%b? [n,y,a,e]: '
+
+## rename window to repo-name
+# http://blog.manaten.net/entry/tmux-repository
+rename_tmux_window() {
+    if [ -d .git ]; then
+        current_dir=${PWD##/*/}
+        upper_dir=${${PWD%/*}##/*/}
+        tmux rename-window "${upper_dir}/${current_dir}"
+    else
+        tmux rename-window $(uname -n)
+    fi
+}
+[ -n "$TMUX" ] && rename_tmux_window
+autoload -U add-zsh-hook
+add-zsh-hook chpwd rename_tmux_window
