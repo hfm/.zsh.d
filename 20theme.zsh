@@ -59,7 +59,7 @@ rename_tmux_window() {
         current_dir=${PWD##/*/}
         upper_dir=${${PWD%/*}##/*/}
         tmux rename-window "${upper_dir}/${current_dir}"
-    else
+    elif [[ -n "$TMUX" ]]; then
         tmux rename-window $(uname -n)
     fi
 }
