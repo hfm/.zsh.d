@@ -77,8 +77,6 @@ if [ $? -eq 0 ]; then
     setupGO
 
     export GOBIN=
-    export GOARCH=amd64
-    export GOOS=darwin
     export CGO_ENABLED=1
     export GOPATH=$HOME
     export PATH=$PATH:$GOPATH/bin
