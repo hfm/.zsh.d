@@ -21,6 +21,7 @@
 
 # general
 export LANG=ja_JP.UTF-8
+export LC_CTYPE=ja_JP.UTF-8
 export SHELL=/usr/local/bin/zsh
 export EDITOR=vim
 export TERM=xterm-256color
