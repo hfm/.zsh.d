@@ -26,4 +26,4 @@ source $HOME/.zsh.d/packages/zsh-bd/bd.zsh
 # |/__\|/__\|/__\|/__\|/__\|/__\|                         
 #                                                         
 # ========================================================
-source $GOROOT/../share/zsh/site-functions/_go
+# source $(brew --cellar zsh)/*/share/zsh/functions/_go
