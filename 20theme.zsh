@@ -55,7 +55,10 @@ SPROMPT='Did you mean %B%001F%r%f%b? [n,y,a,e]: '
 ## rename window to repo-name
 # http://blog.manaten.net/entry/tmux-repository
 rename_tmux_window() {
-    if [[ -n "$vcs_info_msg_0_" && -n "$TMUX" ]]; then
+    [ -n "$TMUX" ] || return
+    LANG=en_US.UTF-8 vcs_info
+
+    if [[ -n "${vcs_info_msg_0_}" ]]; then
         current_dir=${PWD##/*/}
         upper_dir=${${PWD%/*}##/*/}
         tmux rename-window "${upper_dir}/${current_dir}"
@@ -63,6 +66,7 @@ rename_tmux_window() {
         tmux rename-window $(uname -n)
     fi
 }
-[ -n "$TMUX" ] && rename_tmux_window
 autoload -U add-zsh-hook
-add-zsh-hook precmd rename_tmux_window
+add-zsh-hook chpwd rename_tmux_window
+
+[ -n "$TMUX" ] && rename_tmux_window
