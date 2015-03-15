@@ -36,6 +36,10 @@ export ZLS_COLORS=$LS_COLORS
 # gnuplot
 export GNUTERM=x11
 
+# anyenv
+export PATH=$HOME/.anyenv/bin:$PATH
+eval "$(anyenv init - zsh)"
+
 # Homebrew
 [ -f /usr/local/bin/brew ] && export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share:$PATH
 
