@@ -24,30 +24,42 @@ add-zsh-hook precmd _for_prompt
 zstyle ':vcs_info:*' enable git svn cvs
 zstyle ':vcs_info:*' disable bzr cdv darcs mtn svk tla
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "+"
-zstyle ':vcs_info:git:*' unstagedstr "-"
-zstyle ':vcs_info:git:*' formats '%b[%c%u]'
-zstyle ':vcs_info:git:*' actionformats '%b|%a[%c%u]'
+zstyle ':vcs_info:git:*' stagedstr "[+]"
+zstyle ':vcs_info:git:*' unstagedstr "[-]"
+zstyle ':vcs_info:git:*' formats '%b%c%u'
+zstyle ':vcs_info:git:*' actionformats '%b|%a%c%u'
 
-perl_version=$(perl -v | awk '/perl 5/ {print $9}' | sed 's/[(|)]//g')
+perl_version=$(perl -v | awk '/perl 5/ {print $9}' | sed 's/[(|)v]//g')
 ruby_version=$(ruby -v | awk '{print $2}')
 python_version=$(python -V 2>&1 | awk '{print $2}')
+golang_version=$(go version 2>/dev/null | awk '{print $3}' | sed 's/go//')
 
+# see also: http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Visual-effects
 color_reset='%f'
+color_white='%255F'
 color_cyan='%038F'
 color_orange='%214F'
 color_magenta='%164F'
+color_vermilion='%203F'
 color_lightgreen='%077F'
 color_perl='%157F'
 color_turquoise='%027F'
+color_lightblue='%080F'
+color_yellow='%226F'
 
-PROMPT='%n@%m '
-PROMPT+="${color_cyan}[%~]${color_reset} "
-PROMPT+="${color_orange}$([ -n "$TMUX" ] && tmux display -p "[#I-#P] ")${color_reset}" # >> http://yonchu.hatenablog.com/entry/20120413/1334341553
-PROMPT+="${color_lightgreen}%2(v|(%1v @%2v) |)${color_reset}"
-PROMPT+="${color_perl}[perl ${perl_version}]${color_reset} "
-PROMPT+="${color_magenta}[ruby ${ruby_version}]${color_reset} "
-PROMPT+="${color_turquoise}[python ${python_version}]${color_reset} "
+# account and machine name
+PROMPT="${color_white}%n@$(hostname):${color_reset} "
+# current directory
+PROMPT+="${color_yellow}%~${color_reset} "
+# branch-name and status if repo.exist?
+PROMPT+="%2(v|${color_lightgreen}(%1v @%2v)${color_reset} |)"
+# see also: http://yonchu.hatenablog.com/entry/20120413/1334341553
+PROMPT+="${color_orange}$([ -n "$TMUX" ] && tmux display -p "[#I-#P] ")${color_reset}"
+PROMPT+=$'\n'
+PROMPT+="${color_perl}pl:${perl_version}${color_reset} "
+PROMPT+="${color_vermilion}rb:${ruby_version}${color_reset} "
+PROMPT+="${color_turquoise}py:${python_version}${color_reset} "
+PROMPT+="${color_lightblue}go:${golang_version}${color_reset} "
 PROMPT+=$'\n''%B$%b '
 PROMPT2='%_> '
 SPROMPT='Did you mean %B%001F%r%f%b? [n,y,a,e]: '
