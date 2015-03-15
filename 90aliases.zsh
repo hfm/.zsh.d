@@ -6,13 +6,19 @@
 # |  | '.(_/ |  .--' |  |\    |  |  .--' |  .   .'(|  .-.  |(|  '__ | 
 # |  '-'  |  |  `---.|  | \   |  |  `---.|  |\  \  |  | |  | |     |' 
 #  `-----'   `------'`--'  `--'  `------'`--' '--' `--' `--' `-----'  
-#
-alias be='bundle exec'
+
+if [ $(uname) = "Linux" ]; then
+    alias ls="ls --color=auto --almost-all --classify"
+else
+    alias ls="ls -AFG"
+fi
+alias ll='ls -hl'
+
 alias cp='cp -i'
 alias du='du -h'
 alias df='df -h'
 alias grep='grep --color'
-alias ll='ls -hal'
+
 alias mv='mv -i -v'
 alias rm='rm -i'
 alias vi='vim'
@@ -20,7 +26,7 @@ alias -s {txt,md,markdown,xml}=lv
 
 if exists hub;then
     alias git=hub
-    alias gitPullReq='git pull-request'
+    alias gitpr='git pull-request'
 fi
 
 extract() {
@@ -40,12 +46,6 @@ extract() {
 }
 
 alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
-runcpp () {
-    g++ -O2 $1;
-    ./a.out
-}
-alias -s {c,cpp}=runcpp
-
 
 #                .-')   ) (`-.      
 #               ( OO ).  ( OO ).    
@@ -56,8 +56,8 @@ alias -s {c,cpp}=runcpp
 #   \ |  | |  |.-._)   \  .'    \_) 
 #    `'  '-'  '\       / /  .'.  \  
 #      `-----'  `-----' '--'   '--' 
-#
-if [ `uname -s` = 'Darwin' ]; then
+
+if [ $(uname -s) = "Darwin" ]; then
     alias bu='brew update'
     alias bi='brew info'
     alias br='brew upgrade'
