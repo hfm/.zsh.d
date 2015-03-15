@@ -15,8 +15,8 @@ _for_prompt() {
 
     # git stash-num:
     # http://qiita.com/items/13f85c11d3d0aa35d7ef
-    git stash list &>/dev/null
-    [ $? -eq 0 ] && psvar[2]=$(git stash list | wc -l | tr -d " ")
+    local stash_num=$(git stash list 2>/dev/null | wc -l | tr -d " ")
+    [ "$stash_num" -eq 0 ] || psvar[2]=$stash_num
 }
 add-zsh-hook precmd _for_prompt
 
@@ -52,15 +52,19 @@ PROMPT="${color_white}%n@$(hostname):${color_reset} "
 # current directory
 PROMPT+="${color_yellow}%~${color_reset} "
 # branch-name and status if repo.exist?
-PROMPT+="%2(v|${color_lightgreen}(%1v @%2v)${color_reset} |)"
+# see also: http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Conditional-Substrings-in-Prompts
+PROMPT+="%(v|${color_lightgreen}(%1v|)%2(V| @%2v|)%(v|)${color_reset} |)"
 # see also: http://yonchu.hatenablog.com/entry/20120413/1334341553
 PROMPT+="${color_orange}$([ -n "$TMUX" ] && tmux display -p "[#I-#P] ")${color_reset}"
-PROMPT+=$'\n'
+# PROMPT+=$'\n'
+PROMPT+='[ '
 PROMPT+="${color_perl}pl:${perl_version}${color_reset} "
 PROMPT+="${color_vermilion}rb:${ruby_version}${color_reset} "
 PROMPT+="${color_turquoise}py:${python_version}${color_reset} "
 PROMPT+="${color_lightblue}go:${golang_version}${color_reset} "
-PROMPT+=$'\n''%B$%b '
+PROMPT+=']'
+PROMPT+=$'\n'
+PROMPT+='$ '
 PROMPT2='%_> '
 SPROMPT='Did you mean %B%001F%r%f%b? [n,y,a,e]: '
 
