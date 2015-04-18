@@ -39,26 +39,8 @@ export GNUTERM=x11
 # Homebrew
 [ -f /usr/local/bin/brew ] && export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share:$PATH
 
-# Cabal(Haskell)
-[ -f ~/.cabal/bin ] && export PATH=$HOME/.cabal/bin:$PATH
-
-# perl
-if [ -f ~/.plenv/bin/plenv ]; then
-  export PATH=$HOME/.plenv/bin:$HOME/.plenv/shims:$PATH
-  eval "$(plenv init - zsh)"
-fi
-
-# python
-if [ -f ~/.pyenv/bin/pyenv ]; then
-  export PATH=$HOME/.pyenv/bin:$HOME/.pyenv/shims:$PATH
-  eval "$(pyenv init - zsh)"
-fi
-
-# ruby
-if [ -f ~/.rbenv/bin/rbenv ]; then
-  export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH
-  eval "$(rbenv init - zsh)"
-fi
+# anyenv
+[ -f ~/.anyenv/bin/anyenv ] && export PATH=$HOME/.anyenv/bin:$PATH
 
 # bundler
 export BUNDLER_EDITOR="vim +CtrlP"
