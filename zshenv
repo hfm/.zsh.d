@@ -36,10 +36,6 @@ export ZLS_COLORS=$LS_COLORS
 # gnuplot
 export GNUTERM=x11
 
-# anyenv
-export PATH=$HOME/.anyenv/bin:$PATH
-eval "$(anyenv init - zsh)"
-
 # Homebrew
 [ -f /usr/local/bin/brew ] && export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share:$PATH
 
@@ -85,9 +81,3 @@ if [ $? -eq 0 ]; then
     export GOPATH=$HOME
     export PATH=$PATH:$GOPATH/bin
 fi
-
-# Heroku Toolbelt
-[ -d ~/.heroku ] && export PATH="/usr/local/heroku/bin:$PATH"
-
-# JAVA
-export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
