@@ -41,6 +41,8 @@ export GNUTERM=x11
 
 # anyenv
 [ -f ~/.anyenv/bin/anyenv ] && export PATH=$HOME/.anyenv/bin:$PATH
+[ -f ~/.anyenv/envs/rbenv ] && export PATH=$HOME/.anyenv/envs/rbenv/bin:$PATH
+[ -f ~/.anyenv/envs/plenv ] && export PATH=$HOME/.anyenv/envs/plenv/bin:$PATH
 
 # bundler
 export BUNDLER_EDITOR="vim +CtrlP"
