@@ -71,4 +71,4 @@ setopt hist_ignore_all_dups #remove an older from history if duplication command
 setopt share_history #share command history data
 
 # anyenv
-[ -f ~/.anyenv/bin/anyenv ] && eval "$(anyenv init - zsh)"
+[ -f ~/.anyenv/bin/anyenv ] && eval "$(anyenv init --no-rehash - zsh)"
