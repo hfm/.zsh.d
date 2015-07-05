@@ -44,6 +44,7 @@ export GNUTERM=x11
 [ -d ~/.anyenv/envs/rbenv ] && export PATH=$HOME/.anyenv/envs/rbenv/shims:$PATH
 [ -d ~/.anyenv/envs/plenv ] && export PATH=$HOME/.anyenv/envs/plenv/shims:$PATH
 [ -d ~/.anyenv/envs/pyenv ] && export PATH=$HOME/.anyenv/envs/pyenv/shims:$PATH
+[ -d ~/.anyenv/envs/goenv ] && export PATH=$HOME/.anyenv/envs/goenv/shims:$PATH
 
 # bundler
 export BUNDLER_EDITOR="vim +CtrlP"
