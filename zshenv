@@ -56,16 +56,6 @@ export BUNDLER_EDITOR="vim +CtrlP"
 #   http://python.matrix.jp/2013/05/09/go_start1.html
 type go &>/dev/null
 if [ $? -eq 0 ]; then
-    function setupGO() {
-        local GOPATH=`which go`
-        local GODIR=`dirname $GOPATH`
-        local GOPATH_BREW_RELATIVE=`readlink $GOPATH`
-        local GOPATH_BREW=`dirname $GOPATH_BREW_RELATIVE`
-    }
-    setupGO
-
-    export GOBIN=
-    export CGO_ENABLED=1
     export GOPATH=$HOME
     export PATH=$PATH:$GOPATH/bin
 fi
