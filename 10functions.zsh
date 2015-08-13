@@ -1,5 +1,7 @@
 # exists
-exists() { which $1 &>/dev/null }
+exists() {
+    which $1 1>/dev/null 2>/dev/null
+}
 
 # when using hhkb, buildin-keyboard is set to disable
 disable_builtin_keyboard() {
