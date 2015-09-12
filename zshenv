@@ -59,3 +59,6 @@ if [ $? -eq 0 ]; then
     export GOPATH=$HOME
     export PATH=$PATH:$GOPATH/bin
 fi
+
+#lynx
+[ -f $HOME/.lynx.lss ] && export LYNX_LSS=$HOME/.lynx.lss
