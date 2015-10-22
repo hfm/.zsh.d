@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-#
 umask 002
 bindkey -e
 

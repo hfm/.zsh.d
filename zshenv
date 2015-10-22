@@ -2,10 +2,10 @@
 #   ( OO).->( OO)_   (OO )__  ( OO).-/   \( OO) )    _(OO )
 # ,(_/----.(_)--\_) ,--. ,'-'(,------.,--./ ,--/,--.(_/,-.\
 # |__,    |/    _ / |  | |  | |  .---'|   \ |  |\   \ / (_/
-#  (_/   / \_..`--. |  `-'  |(|  '--. |  . '|  |)\   /   / 
+#  (_/   / \_..`--. |  `-'  |(|  '--. |  . '|  |)\   /   /
 #  .'  .'_ .-._)   \|  .-.  | |  .--' |  |\    |_ \     /_)
-# |       |\       /|  | |  | |  `---.|  | \   |\-'\   /   
-# `-------' `-----' `--' `--' `------'`--'  `--'    `-'    
+# |       |\       /|  | |  | |  `---.|  | \   |\-'\   /
+# `-------' `-----' `--' `--' `------'`--'  `--'    `-'
 
 # typeset -U path
 ## (N-/): 存在しないディレクトリは登録しない。
@@ -47,9 +47,6 @@ export GNUTERM=x11
 [ -d ~/.anyenv/envs/goenv ] && export PATH=$HOME/.anyenv/envs/goenv/shims:$PATH
 [ -d ~/.anyenv/envs/erlenv ] && export PATH=$HOME/.anyenv/envs/erlenv/shims:$PATH
 [ -d ~/.anyenv/envs/exenv ] && export PATH=$HOME/.anyenv/envs/exenv/shims:$PATH
-
-# bundler
-export BUNDLER_EDITOR="vim +CtrlP"
 
 # golang
 #   https://gist.github.com/ivanzoid/3477252
