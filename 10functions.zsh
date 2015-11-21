@@ -19,3 +19,10 @@ fi
 if exists peco; then
     source ~/.zsh.d/peco.zsh
 fi
+
+r() {
+  local f
+  f=(~/.zsh.d/packages/my-zsh-completions/src/*(.))
+  unfunction $f:t 2> /dev/null
+  autoload -U $f:t
+}
