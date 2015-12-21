@@ -24,6 +24,7 @@ setopt zle
 
 # completions
 fpath=(~/.zsh.d/packages/my-zsh-completions/src ~/.zsh.d/packages/zsh-completions/src $fpath)
+[ -d "/usr/local/share/zsh/site-functions" ] && fpath+="/usr/local/share/zsh/site-functions"
 
 autoload -U compinit && compinit -u
 zstyle ':completion:*' group-name ''
