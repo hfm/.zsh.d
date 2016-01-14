@@ -152,3 +152,14 @@ prco() {
 am () {
     vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
 }
+
+peco-github-prs () {
+    local pr=$(hub issue 2> /dev/null | grep 'pull' | peco --query "$LBUFFER" | sed -e 's/.*( \(.*\) )$/\1/')
+    if [ -n "$pr" ]; then
+        BUFFER="open ${pr}"
+        zle accept-line
+    fi
+    zle clear-screen
+}
+zle -N peco-github-prs
+bindkey '^G^P' peco-github-prs
