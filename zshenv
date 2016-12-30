@@ -44,7 +44,7 @@ export ZLS_COLORS=$LS_COLORS
 [ -d ~/.anyenv/envs/goenv ] && export PATH=$HOME/.anyenv/envs/goenv/shims:$PATH
 # [ -d ~/.anyenv/envs/erlenv ] && export PATH=$HOME/.anyenv/envs/erlenv/shims:$PATH
 # [ -d ~/.anyenv/envs/exenv ] && export PATH=$HOME/.anyenv/envs/exenv/shims:$PATH
-[ -d ~/.cargo ] && export PATH=$HOME/.cargo/bin:$PATH
+[ -f ~/.cargo/env ] && source $HOME/.cargo/env
 
 # golang
 #   https://gist.github.com/ivanzoid/3477252
