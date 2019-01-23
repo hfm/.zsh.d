@@ -52,7 +52,6 @@ export ZLS_COLORS=$LS_COLORS
 type go &>/dev/null
 if [ $? -eq 0 ]; then
     export GOPATH=$HOME
-    export PATH=$PATH:$GOPATH/bin
 fi
 
 #lynx
