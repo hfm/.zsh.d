@@ -18,6 +18,7 @@ setopt long_list_jobs
 setopt magic_equal_subst
 setopt no_beep
 setopt no_flow_control
+setopt no_global_rcs
 setopt prompt_subst
 setopt pushd_ignore_dups
 setopt zle
