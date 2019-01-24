@@ -25,10 +25,10 @@ export LC_CTYPE=ja_JP.UTF-8
 
 # Homebrew
 if [ -d /opt/brew ]; then
-    brew_path=/opt/brew
+    export BREW_PATH=/opt/brew
 elif [ -f /usr/local/bin/brew ]; then
     export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share:$PATH
-    brew_path=/usr/local
+    export BREW_PATH=/usr/local
 fi
 
 export SHELL="${brew_binpath}/bin/zsh"

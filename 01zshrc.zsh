@@ -26,7 +26,7 @@ setopt zle
 
 # completions
 fpath=(~/.zsh.d/packages/my-zsh-completions/src ~/.zsh.d/packages/zsh-completions/src $fpath)
-[ -d "/usr/local/share/zsh/site-functions" ] && fpath+="/usr/local/share/zsh/site-functions"
+[ -d "${BREW_PATH}/share/zsh/site-functions" ] && fpath+="${BREW_PATH}/share/zsh/site-functions"
 
 autoload -U compinit && compinit -u
 zstyle ':completion:*' group-name ''
@@ -40,7 +40,7 @@ zstyle ':completion:*:descriptions' format '%B[%d]%b'
 zstyle ':completion:*:messages' format '%d'
 zstyle ':completion:*:warnings' format 'No matches: %d'
 zstyle ':completion:*:default' menu select=2
-zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
+zstyle ':completion:*:sudo:*' command-path "${BREW_PATH}/sbin" "${BREW_PATH}/bin" /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
 zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
 # file separator
