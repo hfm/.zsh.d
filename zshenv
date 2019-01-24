@@ -27,18 +27,25 @@ export LC_CTYPE=ja_JP.UTF-8
 if [ -d /opt/brew ]; then
     export BREW_PATH=/opt/brew
 elif [ -f /usr/local/bin/brew ]; then
-    export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share:$PATH
     export BREW_PATH=/usr/local
 fi
 
-export SHELL="${brew_binpath}/bin/zsh"
+if [[ $PATH != *"/usr/local"* ]]; then
+    export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+fi
+
+if [[ $PATH != *"${BREW_PATH}"* ]]; then
+    export PATH="${BREW_PATH}/bin":"${BREW_PATH}/sbin":$PATH
+fi
+
+export SHELL="${BREW_PATH}/bin/zsh"
 export EDITOR=vim
-export VIMRUNTIME="${brew_path}/share/vim/vim81"
+export VIMRUNTIME="${BREW_PATH}/share/vim/vim81"
 export TERM=xterm-256color
 export PATH=$HOME/bin:$PATH
 
-if [ -d "${brew_path}/opt/coreutils/libexec/gnubin" ]; then
-    export PATH="${brew_path}/opt/coreutils/libexec/gnubin:$PATH"
+if [ -d "${BREW_PATH}/opt/coreutils/libexec/gnubin" ]; then
+    export PATH="${BREW_PATH}/opt/coreutils/libexec/gnubin:$PATH"
 fi
 
 # color
