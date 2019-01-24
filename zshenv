@@ -20,6 +20,8 @@
 #       )
 
 # general
+setopt combiningchars
+setopt no_global_rcs
 export LANG=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
 
