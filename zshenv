@@ -22,10 +22,23 @@
 # general
 export LANG=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
-export SHELL=/usr/local/bin/zsh
+
+# Homebrew
+if [ -d /opt/brew ]; then
+    brew_path=/opt/brew
+elif [ -f /usr/local/bin/brew ]; then
+    export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share:$PATH
+    brew_path=/usr/local
+fi
+
+export SHELL=${brew_binpath}/bin/zsh
 export EDITOR=vim
 export TERM=xterm-256color
 export PATH=$HOME/bin:$PATH
+
+if [ -d "${brew_path}/opt/coreutils/libexec/gnubin" ]; then
+    export PATH="${brew_path}/opt/coreutils/libexec/gnubin:$PATH"
+fi
 
 # color
 export CLICOLOR=1
