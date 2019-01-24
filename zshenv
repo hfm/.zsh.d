@@ -31,8 +31,9 @@ elif [ -f /usr/local/bin/brew ]; then
     brew_path=/usr/local
 fi
 
-export SHELL=${brew_binpath}/bin/zsh
+export SHELL="${brew_binpath}/bin/zsh"
 export EDITOR=vim
+export VIMRUNTIME="${brew_path}/share/vim/vim81"
 export TERM=xterm-256color
 export PATH=$HOME/bin:$PATH
 
