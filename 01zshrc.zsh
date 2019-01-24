@@ -4,9 +4,10 @@ bindkey -e
 autoload -Uz add-zsh-hook
 setopt auto_cd
 setopt auto_menu
-setopt auto_pushd
 setopt auto_param_keys
+setopt auto_pushd
 setopt auto_remove_slash
+setopt combiningchars
 setopt complete_aliases
 setopt correct
 setopt extended_glob
