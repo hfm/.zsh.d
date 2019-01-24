@@ -71,5 +71,4 @@ setopt hist_ignore_dups #ignore duplication command history list
 setopt hist_ignore_all_dups #remove an older from history if duplication command.
 setopt share_history #share command history data
 
-eval "$(anyenv init --no-rehash - zsh)"
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
