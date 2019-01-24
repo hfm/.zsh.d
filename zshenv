@@ -47,17 +47,15 @@ export LSCOLORS=cxfxdxdxbxegedabagacad
 export LS_COLORS='di=32:ln=35:so=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 export ZLS_COLORS=$LS_COLORS
 
-# Homebrew
-[ -f /usr/local/bin/brew ] && export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share:$PATH
-
 # anyenv
-[ -f ~/.anyenv/bin/anyenv ] && export PATH=$HOME/.anyenv/bin:$PATH
-[ -d ~/.anyenv/envs/rbenv ] && export PATH=$HOME/.anyenv/envs/rbenv/shims:$PATH
-[ -d ~/.anyenv/envs/plenv ] && export PATH=$HOME/.anyenv/envs/plenv/shims:$PATH
-# [ -d ~/.anyenv/envs/pyenv ] && export PATH=$HOME/.anyenv/envs/pyenv/shims:$PATH
-[ -d ~/.anyenv/envs/goenv ] && export PATH=$HOME/.anyenv/envs/goenv/shims:$PATH
-# [ -d ~/.anyenv/envs/erlenv ] && export PATH=$HOME/.anyenv/envs/erlenv/shims:$PATH
-# [ -d ~/.anyenv/envs/exenv ] && export PATH=$HOME/.anyenv/envs/exenv/shims:$PATH
+type anyenv &>/dev/null
+if [ $? -eq 0 ]; then
+    eval "$(anyenv init --no-rehash - zsh)"
+elif [ -f ~/.anyenv/bin/anyenv ]; then
+    export PATH=$HOME/.anyenv/bin:$PATH
+    eval "$(anyenv init --no-rehash - zsh)"
+fi
+
 [ -f ~/.cargo/env ] && source $HOME/.cargo/env
 
 # golang
