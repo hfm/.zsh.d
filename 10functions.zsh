@@ -17,12 +17,12 @@ if exists direnv; then
 fi
 
 if exists peco; then
-    source ~/.zsh.d/peco.zsh
+    source $ZDOTDIR/peco.zsh
 fi
 
 r() {
   local f
-  f=(~/.zsh.d/packages/my-zsh-completions/src/*(.))
+  f=($ZDOTDIR/packages/my-zsh-completions/src/*(.))
   unfunction $f:t 2> /dev/null
   autoload -U $f:t
 }

@@ -31,6 +31,7 @@ if [ -d /opt/brew ]; then
 elif [ -f /usr/local/bin/brew ]; then
     export BREW_PATH=/usr/local
 fi
+export HOMEBREW_REPOSITORY="${BREW_PATH}/Homebrew"
 
 if [[ $PATH != *"/usr/local"* ]]; then
     export PATH=/usr/local/bin:/usr/local/sbin:$PATH

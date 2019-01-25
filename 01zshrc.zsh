@@ -24,7 +24,7 @@ setopt zle
 
 
 # completions
-fpath=(~/.zsh.d/packages/my-zsh-completions/src ~/.zsh.d/packages/zsh-completions/src $fpath)
+fpath=($ZDOTDIR/packages/my-zsh-completions/src $ZDOTDIR/packages/zsh-completions/src $fpath)
 [ -d "${BREW_PATH}/share/zsh/site-functions" ] && fpath+="${BREW_PATH}/share/zsh/site-functions"
 
 autoload -U compinit && compinit -u
