@@ -47,7 +47,7 @@ export VIMRUNTIME="${BREW_PATH}/share/vim/vim81"
 export TERM=xterm-256color
 export PATH=$HOME/bin:$PATH
 
-local -a fomulas=(coreutils findutils gnu-make gnu-sed gnu-tar gnu-time gnu-units gnu-which grep inetutils)
+local -a fomulas=(coreutils findutils gnu-sed gnu-tar gnu-time gnu-units gnu-which grep inetutils make)
 for f in $fomulas; do
     if [ -d "${BREW_PATH}/opt/${f}/libexec/gnubin" ]; then
         export PATH="${BREW_PATH}/opt/${f}/libexec/gnubin:$PATH"
