@@ -60,7 +60,7 @@ alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
 if [ $(uname -s) = "Darwin" ]; then
     alias bu='brew update'
     alias bi='brew info'
-    alias br='brew upgrade --cleanup'
+    alias br='brew upgrade'
     alias bs='brew -S'
 
     alias preview='open -a Preview'
