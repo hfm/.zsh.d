@@ -7,4 +7,4 @@
 	url = https://github.com/zsh-users/zsh-completions.git
 [submodule "packages/my-zsh-completions"]
 	path = packages/my-zsh-completions
-	url = https://github.com/tacahilo/my-zsh-completions.git
+	url = git@github.com:hfm/my-zsh-completions.git
